@@ -1,6 +1,6 @@
 {
   "SERVER_SECRET_KEY": "key_random_text",
-  "SERVER_START_ON_PORT": "7843",
+  "SERVER_START_ON_PORT": "7844",
   "SERVER_WORKING_ON_ADRESS": "http://localhost",
   "SERVER_MYSQL_SETTINGS": {
     "host": "10.39.0.8",
