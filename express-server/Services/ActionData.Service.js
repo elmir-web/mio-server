@@ -1,15 +1,19 @@
 const moment = require(`moment`);
+const mysql = require(`mysql2/promise`);
 
 class actionDataService {
   async getData(table_name, date_from, date_to) {
     try {
-      const [rowsAllEntities] = await global.connectMySQL.execute(
-        `SELECT * FROM ${table_name} WHERE bdatetime BETWEEN '${moment(
-          date_from
-        ).format('YYYY-MM-DD HH:mm:ss')}' AND '${moment(date_to).format(
-          'YYYY-MM-DD HH:mm:ss'
-        )}'`
+      const sqlQuery = mysql.format(
+        `SELECT * FROM ?? WHERE bdatetime BETWEEN ? AND ?`,
+        [
+          table_name,
+          moment(date_from).format('YYYY-MM-DD HH:mm:ss'),
+          moment(date_to).format('YYYY-MM-DD HH:mm:ss'),
+        ]
       );
+
+      const [rowsAllEntities] = await global.connectMySQL.execute(sqlQuery);
 
       if (rowsAllEntities.length === 0)
         return {
@@ -28,7 +32,10 @@ class actionDataService {
       else
         return {
           error: false,
-          object: { rows: rowsAllEntities },
+          object: {
+            rowsLength: rowsAllEntities.length,
+            rows: rowsAllEntities,
+          },
         };
     } catch (errors) {
       return {
