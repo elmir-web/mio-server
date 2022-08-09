@@ -28,4 +28,6 @@ router.post(
   actionDataController.getData
 );
 
+router.get(`/all-tables/get`, actionDataController.getAllTables);
+
 module.exports = router;

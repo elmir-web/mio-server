@@ -29,6 +29,10 @@ class ActionDataController {
 
     res.status(200).json(result);
   }
+
+  async getAllTables(req, res) {
+    res.status(200).json(await actionDataService.getAllTables());
+  }
 }
 
 module.exports = new ActionDataController();

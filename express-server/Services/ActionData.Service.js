@@ -1,5 +1,6 @@
 const moment = require(`moment`);
 const mysql = require(`mysql2/promise`);
+const { SERVER_MYSQL_SETTINGS } = require(`./../ServerConfig.json`);
 
 class actionDataService {
   async getData(table_name, date_from, date_to) {
@@ -43,6 +44,16 @@ class actionDataService {
         object: errors,
       };
     }
+  }
+
+  async getAllTables() {
+    return [
+      `analizi`,
+      `konverter`,
+      `pa_pobeda`,
+      `sh_pech_uspik`,
+      `sush_pech_ub`,
+    ];
   }
 }
 

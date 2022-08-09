@@ -41,14 +41,6 @@ const startThisApp = async () => {
         });
       }
     });
-
-    // global.connectMySQL = await mysql.createPool(SERVER_MYSQL_SETTINGS);
-
-    // app.listen(SERVER_START_ON_PORT, () => {
-    //   console.log(
-    //     `Приложение Express JS запущено на порту "${SERVER_START_ON_PORT}"!`
-    //   );
-    // });
   } catch (err) {
     console.log(
       `________________________________________________________________________________________________________________________`
